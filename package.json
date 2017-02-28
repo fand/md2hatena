@@ -5,6 +5,7 @@
   "bin": "bin/cli.js",
   "main": "index.js",
   "scripts": {
+    "build": "babel src --out-dir lib",
     "test": "ava test"
   },
   "author": "fand <fand@gmork.in>",
@@ -14,6 +15,8 @@
     "remark": "^7.0.0"
   },
   "devDependencies": {
-    "ava": "^0.18.2"
+    "ava": "^0.18.2",
+    "babel-cli": "^6.23.0",
+    "babel-preset-latest": "^6.22.0"
   }
 }
