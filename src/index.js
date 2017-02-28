@@ -1,4 +1,11 @@
-export default function stringify () {
+import remark from 'remark';
+import p from 'pify';
+
+export default function md2hatena (md) {
+  return p(remark().use(stringify).process)(md).then(vfile => vfile.contents);
+}
+
+export function stringify () {
   this.Compiler = function compiler(tree) {
     return nodeToHatena(tree);
   };
