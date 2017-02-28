@@ -5,12 +5,15 @@
   "bin": "bin/cli.js",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "ava test"
   },
   "author": "fand <fand@gmork.in>",
   "license": "MIT",
   "dependencies": {
     "pify": "^2.3.0",
     "remark": "^7.0.0"
+  },
+  "devDependencies": {
+    "ava": "^0.18.2"
   }
 }
