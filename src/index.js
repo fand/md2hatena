@@ -34,9 +34,12 @@ export function nodeToHatena(node, opts = {}) {
     const suffix = title.match(/\S+/) ? `:title=${title}` : ':title';
     return `[${node.url}${suffix}]`;
   case 'list':
-    return node.children.map((n) => nodeToHatena(n, { level: level + 1 })).join('');
+    return node.children.map((n) => nodeToHatena(n, { level: level + 1 })).join('\n');
   case 'listItem':
-    return '----------'.slice(0, level) + ' ' + node.children.map(n => nodeToHatena(n, { level })).join('');
+    return '----------'.slice(0, level) + ' ' + node.children.map(n => {
+      const h = nodeToHatena(n, { level });
+      return n.type === 'list' ? `\n${h}` : h;
+    }).join('');
   case 'table':
     return (
       nodeToHatena(node.children[0], { prefix: '*' }) + '\n' +
