@@ -11,34 +11,12 @@ export function stringify () {
   };
 }
 
-const isBlockType = {
-  heading   : true,
-  paragraph : true,
-  html      : true,
-  list      : true,
-  table     : true,
-  code      : true,
-};
-
-function joinNodes (nodes) {
-  if (nodes.length === 0) { return ''; }
-
-  const items = [nodeToHatena(nodes[0])];
-  const [i, j] = [0, 1];
-  for (let [i, j] = [0, 1]; j < nodes.length; i++, j++) {
-    if (isBlockType[nodes[i].type] && isBlockType[nodes[j].type]) {
-      items.push('\n\n');
-    }
-    items.push(nodeToHatena(nodes[j]));
-  }
-
-  return items.join('');
-}
+import joinNodes from './joinNodes';
 
 const converter = {
 
   root (node) {
-    return joinNodes(node.children);
+    return joinNodes(node.children, node.children.map(nodeToHatena));
   },
 
   heading (node) {
@@ -50,7 +28,7 @@ const converter = {
   },
 
   paragraph (node) {
-    return joinNodes(node.children);
+    return joinNodes(node.children, node.children.map(nodeToHatena));
   },
 
   inlineCode (node) {
