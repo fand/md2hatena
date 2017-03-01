@@ -7,5 +7,5 @@ test('nodeToHatena(text)', t => {
 });
 
 test('md2hatena(text)', async t => {
-  t.is(await md2hatena('yo'), 'yo\n');
+  t.is(await md2hatena('yo'), 'yo');
 });

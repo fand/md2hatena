@@ -18,13 +18,13 @@ export function nodeToHatena(node, opts = {}) {
   case 'root':
     return node.children.map(nodeToHatena).join('');
   case 'heading':
-    return '\n' + '**********'.slice(0, node.depth) + ' ' + node.children.map(nodeToHatena).join('') + '\n';
+    return '**********'.slice(0, node.depth) + ' ' + node.children.map(nodeToHatena).join('');
   case 'text':
     return node.value;
   case 'paragraph':
-    return node.children.map(nodeToHatena).join('') + '\n';
+    return node.children.map(nodeToHatena).join('');
   case 'inlineCode':
-    return ' <code>' + node.value + '</code> ';
+    return '<code>' + node.value + '</code>';
   case 'html':
     return node.value;
   case 'thematicBreak':
@@ -34,16 +34,13 @@ export function nodeToHatena(node, opts = {}) {
     const suffix = title.match(/\S+/) ? `:title=${title}` : ':title';
     return `[${node.url}${suffix}]`;
   case 'list':
-    const body = node.children.map((n) => nodeToHatena(n, { level: level + 1 })).join('');
-    return level === 0 ? `\n${body}\n` : body;
+    return node.children.map((n) => nodeToHatena(n, { level: level + 1 })).join('');
   case 'listItem':
     return '----------'.slice(0, level) + ' ' + node.children.map(n => nodeToHatena(n, { level })).join('');
   case 'table':
     return (
-      '\n' +
       nodeToHatena(node.children[0], { prefix: '*' }) + '\n' +
-      node.children.slice(1).map(n => nodeToHatena(n)).join('\n') +
-      '\n'
+      node.children.slice(1).map(n => nodeToHatena(n)).join('\n')
     );
   case 'tableRow':
     return '| ' + node.children.map(n => (opts.prefix || '') + nodeToHatena(n)).join(' | ') + ' |';

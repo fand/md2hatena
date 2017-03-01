@@ -4,9 +4,9 @@ import 'babel-polyfill';
 
 test('nodeToHatena(paragraph)', t => {
   const node = { type: 'text', value: 'yo' };
-  t.is(nodeToHatena({ type: 'paragraph', children: [node, node] }), 'yoyo\n');
+  t.is(nodeToHatena({ type: 'paragraph', children: [node, node] }), 'yoyo');
 });
 
 test('md2hatena(paragraph)', async t => {
-  t.is(await md2hatena('\nyo\n'), 'yo\n');
+  t.is(await md2hatena('yo'), 'yo');
 });

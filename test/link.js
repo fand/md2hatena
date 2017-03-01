@@ -9,6 +9,6 @@ test('nodeToHatena(link)', t => {
 });
 
 test('md2hatena(link)', async t => {
-  t.is(await md2hatena('[](//example.com)'), '[//example.com:title]\n');
-  t.is(await md2hatena('[foo](//example.com)'), '[//example.com:title=foo]\n');
+  t.is(await md2hatena('[](//example.com)'), '[//example.com:title]');
+  t.is(await md2hatena('[foo](//example.com)'), '[//example.com:title=foo]');
 });
