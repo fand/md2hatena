@@ -22,6 +22,10 @@
     "babel-preset-stage-2": "^6.22.0",
     "dedent": "^0.7.0"
   },
+  "files": [
+    "bin/",
+    "lib/"
+  ],
   "homepage": "https://github.com/fand/md2hatena/issues",
   "keywords": [
     "hatena",
@@ -36,6 +40,7 @@
   },
   "scripts": {
     "build": "babel src --out-dir lib",
-    "test": "ava test"
+    "test": "ava test",
+    "prepublishOnly": "npm test && npm run build"
   }
 }
