@@ -35,49 +35,82 @@ function joinNodes (nodes) {
   return items.join('');
 }
 
-export function nodeToHatena (node, opts = {}) {
-  const level = opts.level || 0;
+const converter = {
 
-  switch (node.type) {
-  case 'root':
+  root (node) {
     return joinNodes(node.children);
-  case 'heading':
+  },
+
+  heading (node) {
     return '**********'.slice(0, node.depth) + ' ' + node.children.map(nodeToHatena).join('');
-  case 'text':
+  },
+
+  text (node) {
     return node.value;
-  case 'paragraph':
+  },
+
+  paragraph (node) {
     return joinNodes(node.children);
-  case 'inlineCode':
+  },
+
+  inlineCode (node) {
     return '<code>' + node.value + '</code>';
-  case 'html':
+  },
+
+  html (node) {
     return node.value;
-  case 'thematicBreak':
+  },
+
+  thematicBreak (node) {
     return '<hr>';
-  case 'link':
+  },
+
+  link (node) {
     const title = node.children.map(nodeToHatena).join('');
     const suffix = title.match(/\S+/) ? `:title=${title}` : ':title';
     return `[${node.url}${suffix}]`;
-  case 'list':
+  },
+
+  list (node, opts) {
+    const level = opts.level || 0;
     return node.children.map((n) => nodeToHatena(n, { level: level + 1 })).join('\n');
-  case 'listItem':
+  },
+
+  listItem (node, opts) {
+    const level = opts.level || 0;
     return '----------'.slice(0, level) + ' ' + node.children.map(n => {
       const h = nodeToHatena(n, { level });
       return n.type === 'list' ? `\n${h}` : h;
     }).join('');
-  case 'table':
+  },
+
+  table (node) {
     return (
       nodeToHatena(node.children[0], { prefix: '*' }) + '\n' +
       node.children.slice(1).map(n => nodeToHatena(n)).join('\n')
     );
-  case 'tableRow':
+  },
+
+  tableRow (node, opts) {
     return '| ' + node.children.map(n => (opts.prefix || '') + nodeToHatena(n)).join(' | ') + ' |';
-  case 'tableCell':
+  },
+
+  tableCell (node) {
     return node.children.map(nodeToHatena).join('');
-  case 'code':
+  },
+
+  code (node) {
     return `>|${node.lang}|
 ${node.value}
 ||<`;
-  default:
-    return node.value || '';
+  },
+
+};
+
+export function nodeToHatena (node, opts = {}) {
+  if (converter[node.type]) {
+    return converter[node.type](node, opts);
   }
+
+  return node.value || '';
 }
