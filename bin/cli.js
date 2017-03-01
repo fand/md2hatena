@@ -1,10 +1,9 @@
-const remark = require('remark');
 const fs = require('fs');
 const p = require('pify');
-const md2hatena = require('../src/md2hatena');
+const md2hatena = require('../lib/md2hatena');
 
 p(fs.readFile)(process.argv[2], 'utf8')
-  .then(p(remark().use(md2hatena).process))
+  .then(markdownToHatena)
   .then((data) => {
     console.log(data.contents);
   })
