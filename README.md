@@ -18,7 +18,7 @@
 ### As a library
 ```js
 import fs from 'fs';
-import md2hatena from 'md2hatena';
+import { md2hatena } from 'md2hatena';
 
 const md = fs.readFileSync('foo.md', 'utf8');
 md2hatena(md).then((hatena) => {

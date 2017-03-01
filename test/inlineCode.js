@@ -1,5 +1,5 @@
 import test from 'ava';
-import md2hatena, { nodeToHatena } from '../src';
+import { md2hatena, nodeToHatena } from '../src';
 import 'babel-polyfill';
 
 test('nodeToHatena(inlineCode)', t => {

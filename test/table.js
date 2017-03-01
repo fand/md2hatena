@@ -1,6 +1,6 @@
 import test from 'ava';
 import dedent from 'dedent';
-import md2hatena, { nodeToHatena } from '../src';
+import { md2hatena, nodeToHatena } from '../src';
 import 'babel-polyfill';
 
 test('nodeToHatena(table)', t => {

@@ -1,7 +1,7 @@
 import remark from 'remark';
 import p from 'pify';
 
-export default function md2hatena (md) {
+export function md2hatena (md) {
   return p(remark().use(stringify).process)(md).then(vfile => vfile.contents);
 }
 
