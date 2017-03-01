@@ -11,18 +11,42 @@ export function stringify () {
   };
 }
 
-export function nodeToHatena(node, opts = {}) {
+const isBlockType = {
+  heading   : true,
+  paragraph : true,
+  html      : true,
+  list      : true,
+  table     : true,
+  code      : true,
+};
+
+function joinNodes (nodes) {
+  if (nodes.length === 0) { return ''; }
+
+  const items = [nodeToHatena(nodes[0])];
+  const [i, j] = [0, 1];
+  for (let [i, j] = [0, 1]; j < nodes.length; i++, j++) {
+    if (isBlockType[nodes[i].type] && isBlockType[nodes[j].type]) {
+      items.push('\n\n');
+    }
+    items.push(nodeToHatena(nodes[j]));
+  }
+
+  return items.join('');
+}
+
+export function nodeToHatena (node, opts = {}) {
   const level = opts.level || 0;
 
   switch (node.type) {
   case 'root':
-    return node.children.map(nodeToHatena).join('');
+    return joinNodes(node.children);
   case 'heading':
     return '**********'.slice(0, node.depth) + ' ' + node.children.map(nodeToHatena).join('');
   case 'text':
     return node.value;
   case 'paragraph':
-    return node.children.map(nodeToHatena).join('');
+    return joinNodes(node.children);
   case 'inlineCode':
     return '<code>' + node.value + '</code>';
   case 'html':
