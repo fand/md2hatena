@@ -52,8 +52,7 @@ export function nodeToHatena(node, opts = {}) {
   case 'code':
     return `>|${node.lang}|
 ${node.value}
-||<
-`;
+||<`;
   default:
     return node.value || '';
   }
