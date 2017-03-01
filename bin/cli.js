@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const fs = require('fs');
 const p = require('pify');
 const { md2hatena } = require('../lib');
