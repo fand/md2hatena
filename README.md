@@ -9,11 +9,7 @@
 
 ![example](https://cloud.githubusercontent.com/assets/1403842/23490546/8d97a4bc-ff3c-11e6-8514-20af7e062710.gif)
 
-`md2hatena` suports almost all markdown syntax!
-Following syntaxes will be supported soon:  
-
-- References ([`linkReference`](https://github.com/syntax-tree/mdast#linkreference), [`imageReference`](https://github.com/syntax-tree/mdast#imagereference), [`footnoteReference`](https://github.com/syntax-tree/mdast#footnotereference))
-- Definitions ([`definition`](https://github.com/syntax-tree/mdast#definition) [`footnoteDefinition`](https://github.com/syntax-tree/mdast#footnotedefinition))
+`md2hatena` suports **all** markdown syntax defined in [mdast](https://github.com/syntax-tree/mdast)!
 
 ## Install
 `npm i -g md2hatena`
@@ -52,3 +48,6 @@ remark().use(stringify).process(md, (vfile) => {
   console.log(vfile.contents);
 });
 ```
+
+### LICENSE
+MIT
