@@ -1,8 +1,9 @@
-import remark from 'remark';
+import unified from 'unified';
+import parse from 'remark-parse';
 import nodeToHatena from './nodeToHatena';
 
 export function md2hatena (md) {
-  return remark().use(stringify).process(md).then(vfile => vfile.contents);
+  return unified().use(parse, { footnotes: true }).use(stringify).process(md).then(vfile => vfile.contents);
 }
 
 function compiler (tree) {

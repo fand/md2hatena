@@ -70,6 +70,51 @@ ${node.value}
 ||<`;
   },
 
+  blockquote (node) {
+    return `>>
+${joinNodes(node.children, node.children.map(nodeToHatena))}
+<<`;
+  },
+
+  yaml (node) {
+    return `>|yaml|
+${node.value}
+||<`;
+  },
+
+  break () {
+    return '\n';
+  },
+
+  emphasis (node) {
+    return `<em>${node.children.map(nodeToHatena).join('')}</em>`;
+  },
+
+  strong (node) {
+    return `<strong>${node.children.map(nodeToHatena).join('')}</strong>`;
+  },
+
+  delete (node) {
+    return `<del>${node.children.map(nodeToHatena).join('')}</del>`;
+  },
+
+  image (node) {
+    if (node.alt && node.title) {
+      return `<img src="${node.url}" alt="${node.alt}" title="${node.title}"/>`;
+    }
+    if (node.alt) {
+      return `<img src="${node.url}" alt="${node.alt}"/>`;
+    }
+    if (node.title) {
+      return `<img src="${node.url}" title="${node.title}"/>`;
+    }
+    return `[${node.url}:image]`;
+  },
+
+  footnote (node) {
+    return `((${node.children.map(nodeToHatena).join('')}))`;
+  },
+
 };
 
 export default function nodeToHatena (node, opts = {}) {

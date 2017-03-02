@@ -13,7 +13,8 @@
   },
   "dependencies": {
     "pify": "^2.3.0",
-    "remark": "^7.0.0"
+    "remark-parse": "^3.0.0",
+    "unified": "^6.1.1"
   },
   "devDependencies": {
     "ava": "^0.18.2",
