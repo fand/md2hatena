@@ -2,20 +2,20 @@ import joinNodes from './joinNodes';
 
 const converter = {
 
-  root (node) {
-    return joinNodes(node.children, node.children.map(nodeToHatena));
+  root (node, opts) {
+    return joinNodes(node.children, node.children.map(n => nodeToHatena(n, opts)));
   },
 
-  heading (node) {
-    return '**********'.slice(0, node.depth) + ' ' + node.children.map(nodeToHatena).join('');
+  heading (node, opts) {
+    return '**********'.slice(0, node.depth) + ' ' + node.children.map(n => nodeToHatena(n, opts)).join('');
   },
 
   text (node) {
     return node.value;
   },
 
-  paragraph (node) {
-    return joinNodes(node.children, node.children.map(nodeToHatena));
+  paragraph (node, opts) {
+    return joinNodes(node.children, node.children.map(n => nodeToHatena(n, opts)));
   },
 
   inlineCode (node) {
@@ -30,38 +30,38 @@ const converter = {
     return '<hr>';
   },
 
-  link (node) {
-    const title = node.children.map(nodeToHatena).join('');
+  link (node, opts) {
+    const title = node.children.map(n => nodeToHatena(n, opts)).join('');
     const suffix = title.match(/\S+/) ? `:title=${title}` : ':title';
     return `[${node.url}${suffix}]`;
   },
 
   list (node, opts) {
     const level = opts.level || 0;
-    return node.children.map(n => nodeToHatena(n, { level: level + 1 })).join('\n');
+    return node.children.map(n => nodeToHatena(n, { ...opts, level: level + 1 })).join('\n');
   },
 
   listItem (node, opts) {
     const level = opts.level || 0;
     return '----------'.slice(0, level) + ' ' + node.children.map(n => {
-      const h = nodeToHatena(n, { level });
+      const h = nodeToHatena(n, { ...opts, level });
       return n.type === 'list' ? `\n${h}` : h;
     }).join('');
   },
 
-  table (node) {
+  table (node, opts) {
     return (
       nodeToHatena(node.children[0], { prefix: '*' }) + '\n' +
-      node.children.slice(1).map(n => nodeToHatena(n)).join('\n')
+      node.children.slice(1).map(n => nodeToHatena(n, opts)).join('\n')
     );
   },
 
   tableRow (node, opts) {
-    return '| ' + node.children.map(n => (opts.prefix || '') + nodeToHatena(n)).join(' | ') + ' |';
+    return '| ' + node.children.map(n => (opts.prefix || '') + nodeToHatena(n, opts)).join(' | ') + ' |';
   },
 
-  tableCell (node) {
-    return node.children.map(nodeToHatena).join('');
+  tableCell (node, opts) {
+    return node.children.map(n => nodeToHatena(n, opts)).join('');
   },
 
   code (node) {
@@ -70,9 +70,9 @@ ${node.value}
 ||<`;
   },
 
-  blockquote (node) {
+  blockquote (node, opts) {
     return `>>
-${joinNodes(node.children, node.children.map(nodeToHatena))}
+${joinNodes(node.children, node.children.map(n => nodeToHatena(n, opts)))}
 <<`;
   },
 
@@ -86,16 +86,16 @@ ${node.value}
     return '\n';
   },
 
-  emphasis (node) {
-    return `<em>${node.children.map(nodeToHatena).join('')}</em>`;
+  emphasis (node, opts) {
+    return `<em>${node.children.map(n => nodeToHatena(n, opts)).join('')}</em>`;
   },
 
-  strong (node) {
-    return `<strong>${node.children.map(nodeToHatena).join('')}</strong>`;
+  strong (node, opts) {
+    return `<strong>${node.children.map(n => nodeToHatena(n, opts)).join('')}</strong>`;
   },
 
-  delete (node) {
-    return `<del>${node.children.map(nodeToHatena).join('')}</del>`;
+  delete (node, opts) {
+    return `<del>${node.children.map(n => nodeToHatena(n, opts)).join('')}</del>`;
   },
 
   image (node) {
@@ -111,8 +111,25 @@ ${node.value}
     return `[${node.url}:image]`;
   },
 
-  footnote (node) {
-    return `((${node.children.map(nodeToHatena).join('')}))`;
+  footnote (node, opts) {
+    return `((${node.children.map(n => nodeToHatena(n, opts)).join('')}))`;
+  },
+
+  footnoteDefinition () {
+    return '';
+  },
+
+  footnoteReference (node, opts) {
+    if (!opts.footnoteDefinition) {
+      return '';
+    }
+
+    const def = opts.footnoteDefinition[node.identifier];
+    if (def) {
+      const body = def.children.map(n => nodeToHatena(n, opts)).join('');
+      return `((${body}))`;
+    }
+    return '';
   },
 
 };
