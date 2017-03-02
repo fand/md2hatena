@@ -1,1 +1,8 @@
-{ "presets": ["latest", "stage-2"] }
+{
+    "presets": ["latest", "stage-2"],
+    "env": {
+        "development": {
+            "sourceMaps": "inline"
+        }
+    }
+}

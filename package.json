@@ -20,7 +20,9 @@
     "babel-cli": "^6.23.0",
     "babel-preset-latest": "^6.22.0",
     "babel-preset-stage-2": "^6.22.0",
-    "dedent": "^0.7.0"
+    "cross-env": "^3.1.4",
+    "dedent": "^0.7.0",
+    "nyc": "^10.1.2"
   },
   "files": [
     "bin/",
@@ -39,8 +41,8 @@
     "url": "https://github.com/fand/md2hatena"
   },
   "scripts": {
-    "build": "babel src --out-dir lib",
-    "test": "ava test",
+    "build": "cross-env BABEL_ENV=production babel src --out-dir lib",
+    "test": "nyc ava test",
     "prepublishOnly": "npm test && npm run build"
   }
 }
