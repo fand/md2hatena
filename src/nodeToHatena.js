@@ -26,7 +26,7 @@ const converter = {
     return node.value;
   },
 
-  thematicBreak (node) {
+  thematicBreak () {
     return '<hr>';
   },
 
@@ -38,7 +38,7 @@ const converter = {
 
   list (node, opts) {
     const level = opts.level || 0;
-    return node.children.map((n) => nodeToHatena(n, { level: level + 1 })).join('\n');
+    return node.children.map(n => nodeToHatena(n, { level: level + 1 })).join('\n');
   },
 
   listItem (node, opts) {
