@@ -70,6 +70,12 @@ ${node.value}
 ||<`;
   },
 
+  blockquote (node) {
+    return `>>
+${joinNodes(node.children, node.children.map(nodeToHatena))}
+<<`;
+  },
+
 };
 
 export default function nodeToHatena (node, opts = {}) {
