@@ -86,6 +86,10 @@ ${node.value}
     return '\n';
   },
 
+  emphasis (node) {
+    return `<em>${node.children.map(nodeToHatena).join('')}</em>`;
+  },
+
 };
 
 export default function nodeToHatena (node, opts = {}) {
