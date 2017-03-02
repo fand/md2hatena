@@ -132,6 +132,34 @@ ${node.value}
     return '';
   },
 
+  definition () {
+    return '';
+  },
+
+  linkReference (node, opts) {
+    if (!opts.definition || !opts.definition[node.identifier]) {
+      return '';
+    }
+
+    const def = opts.definition[node.identifier];
+    if (node.referenceType === 'full') {
+      return `[${def}:title=${node.children.map(n => nodeToHatena(n, opts)).join('')}]`;
+    }
+    return `[${def}]`;
+  },
+
+  imageReference (node, opts) {
+    if (!opts.definition || !opts.definition[node.identifier]) {
+      return '';
+    }
+
+    const def = opts.definition[node.identifier];
+    if (node.referenceType === 'full') {
+      return `<img src="${def}" alt="${node.alt}"/>`;
+    }
+    return `[${def}:image]`;
+  },
+
 };
 
 export default function nodeToHatena (node, opts = {}) {
