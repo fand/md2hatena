@@ -90,6 +90,10 @@ ${node.value}
     return `<em>${node.children.map(nodeToHatena).join('')}</em>`;
   },
 
+  strong (node) {
+    return `<strong>${node.children.map(nodeToHatena).join('')}</strong>`;
+  },
+
 };
 
 export default function nodeToHatena (node, opts = {}) {
