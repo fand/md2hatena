@@ -76,6 +76,12 @@ ${joinNodes(node.children, node.children.map(nodeToHatena))}
 <<`;
   },
 
+  yaml (node) {
+    return `>|yaml|
+${node.value}
+||<`;
+  },
+
 };
 
 export default function nodeToHatena (node, opts = {}) {
