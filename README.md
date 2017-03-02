@@ -7,18 +7,24 @@
 
 > Markdown to Hatena Syntax (はてな記法) converter.
 
+![example](https://cloud.githubusercontent.com/assets/1403842/23490546/8d97a4bc-ff3c-11e6-8514-20af7e062710.gif)
+
 ## Install
 `npm i -g md2hatena`
 
 ## Usage
-`md2hatena` can be used in 3 ways:
+`md2hatena` can be used in 4 ways:
 
 - As a CLI command
+- As a Atom command in [language-hatena](https://atom.io/packages/language-hatena) package
 - As a library
 - As a [remark](https://github.com/wooorm/remark) plugin
 
 ### As a CLI command
 `$ md2hatena foo.md > foo.hatena`
+
+### As a Atom command in language-hatena package
+`Language Hatena: Convert Markdown To Hatena Syntax` command is available in [language-hatena](https://atom.io/packages/language-hatena) package.
 
 ### As a library
 ```js
