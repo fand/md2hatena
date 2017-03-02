@@ -20,6 +20,7 @@
     "babel-cli": "^6.23.0",
     "babel-preset-latest": "^6.22.0",
     "babel-preset-stage-2": "^6.22.0",
+    "coveralls": "^2.11.16",
     "cross-env": "^3.1.4",
     "dedent": "^0.7.0",
     "nyc": "^10.1.2"
@@ -43,6 +44,8 @@
   "scripts": {
     "build": "cross-env BABEL_ENV=production babel src --out-dir lib",
     "test": "nyc ava test",
-    "prepublishOnly": "npm test && npm run build"
+    "prepublishOnly": "npm test && npm run build",
+    "lint": "echo 'npm run lint is TBD'",
+    "ci": "npm run lint && npm run test"
   }
 }
