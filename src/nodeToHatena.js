@@ -82,6 +82,10 @@ ${node.value}
 ||<`;
   },
 
+  break () {
+    return '\n';
+  },
+
 };
 
 export default function nodeToHatena (node, opts = {}) {
