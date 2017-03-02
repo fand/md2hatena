@@ -5,10 +5,12 @@ export function md2hatena (md) {
   return remark().use(stringify).process(md).then(vfile => vfile.contents);
 }
 
+function compiler (tree) {
+  return nodeToHatena(tree);
+}
+
 export function stringify () {
-  this.Compiler = function compiler(tree) {
-    return nodeToHatena(tree);
-  };
+  this.Compiler = compiler;
 }
 
 export { nodeToHatena };
