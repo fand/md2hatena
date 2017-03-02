@@ -6,6 +6,7 @@ const isBlockType = {
   table: true,
   code: true,
   thematicBreak: true,
+  blockquote: true,
 };
 
 export default function joinNodes (nodes, results) {
