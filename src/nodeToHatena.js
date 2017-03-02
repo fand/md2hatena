@@ -98,6 +98,19 @@ ${node.value}
     return `<del>${node.children.map(nodeToHatena).join('')}</del>`;
   },
 
+  image (node) {
+    if (node.alt && node.title) {
+      return `<img src="${node.url}" alt="${node.alt}" title="${node.title}"/>`;
+    }
+    if (node.alt) {
+      return `<img src="${node.url}" alt="${node.alt}"/>`;
+    }
+    if (node.title) {
+      return `<img src="${node.url}" title="${node.title}"/>`;
+    }
+    return `[${node.url}:image]`;
+  },
+
 };
 
 export default function nodeToHatena (node, opts = {}) {
