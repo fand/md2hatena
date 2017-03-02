@@ -94,6 +94,10 @@ ${node.value}
     return `<strong>${node.children.map(nodeToHatena).join('')}</strong>`;
   },
 
+  delete (node) {
+    return `<del>${node.children.map(nodeToHatena).join('')}</del>`;
+  },
+
 };
 
 export default function nodeToHatena (node, opts = {}) {
