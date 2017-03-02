@@ -111,6 +111,10 @@ ${node.value}
     return `[${node.url}:image]`;
   },
 
+  footnote (node) {
+    return `((${node.children.map(nodeToHatena).join('')}))`;
+  },
+
 };
 
 export default function nodeToHatena (node, opts = {}) {
