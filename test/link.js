@@ -3,7 +3,7 @@ import { md2hatena, nodeToHatena } from '../src';
 import 'babel-polyfill';
 
 test('nodeToHatena(link)', t => {
-  const n = { type: 'text', value: 'foo' }
+  const n = { type: 'text', value: 'foo' };
   t.is(nodeToHatena({ type: 'link', url: '//example.com', children: [] }), '[//example.com:title]');
   t.is(nodeToHatena({ type: 'link', url: '//example.com', children: [n] }), '[//example.com:title=foo]');
 });

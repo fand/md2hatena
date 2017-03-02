@@ -4,11 +4,11 @@ import { md2hatena, nodeToHatena } from '../src';
 import 'babel-polyfill';
 
 test('nodeToHatena(table)', t => {
-  const text = (t) => ({ type: 'text', value: t });
-  const c = (t) => ({ type: 'tableCell', children: [text(t)] });
+  const text = t => ({ type: 'text', value: t });
+  const c = t => ({ type: 'tableCell', children: [text(t)] });
   const table = {
     type: 'table',
-    children:[
+    children: [
       { type: 'tableRow', children: [c('foo'), c('bar'), c('baz')] },
       { type: 'tableRow', children: [c('aaa'), c('bbb'), c('ccc')] },
     ],

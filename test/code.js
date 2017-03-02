@@ -4,8 +4,6 @@ import { md2hatena, nodeToHatena } from '../src';
 import 'babel-polyfill';
 
 test('nodeToHatena(code)', t => {
-  const text = (t) => ({ type: 'text', value: t });
-  const c = (t) => ({ type: 'tableCell', children: [text(t)] });
   const code = {
     type: 'code',
     lang: 'perl',

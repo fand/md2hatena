@@ -3,20 +3,20 @@ import { md2hatena, nodeToHatena } from '../src';
 import 'babel-polyfill';
 
 test('nodeToHatena(list)', t => {
-  const text = (t) => ({ type: 'text', value: t });
-  const p = (t) => ({ type: 'paragraph', children: [text(t)] });
+  const text = t => ({ type: 'text', value: t });
+  const p = t => ({ type: 'paragraph', children: [text(t)] });
   const list = {
     type: 'list',
-    children:[
+    children: [
       { type: 'listItem', children: [p('foo')] },
       { type: 'listItem', children: [
         text('bar'),
         {
           type: 'list',
-          children:[
+          children: [
             { type: 'listItem', children: [p('baz')] },
-          ]
-        }
+          ],
+        },
       ] },
     ],
   };
