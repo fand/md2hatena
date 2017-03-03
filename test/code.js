@@ -4,16 +4,25 @@ import { md2hatena, nodeToHatena } from '../src';
 import 'babel-polyfill';
 
 test('nodeToHatena(code)', t => {
-  const code = {
+  t.is(nodeToHatena({
     type: 'code',
     lang: 'perl',
     value: dedent(`
       my $foo = qr/bar/;
     `),
-  };
-  t.is(nodeToHatena(code), dedent(`
+  }), dedent(`
     >|perl|
     my $foo = qr/bar/;
+    ||<
+  `));
+
+  t.is(nodeToHatena({
+    type: 'code',
+    lang: null,
+    value: 'yoyo',
+  }), dedent(`
+    >||
+    yoyo
     ||<
   `));
 });
@@ -26,6 +35,15 @@ test('md2hatena(code)', async t => {
   `)), dedent(`
     >|perl|
     my $foo = qr/bar/;
+    ||<
+  `));
+  t.is(await md2hatena(dedent(`
+    \`\`\`
+    yoyo
+    \`\`\`
+  `)), dedent(`
+    >||
+    yoyo
     ||<
   `));
 });

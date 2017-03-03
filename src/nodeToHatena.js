@@ -65,7 +65,7 @@ const converter = {
   },
 
   code (node) {
-    return `>|${node.lang}|
+    return `>|${node.lang || ''}|
 ${node.value}
 ||<`;
   },

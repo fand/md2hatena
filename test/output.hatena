@@ -74,7 +74,7 @@ Nam accumsan, mi vel malesuada tincidunt, sem tellus malesuada ipsum, quis hendr
 my $foo = qr/bar/;
 ||<
 
->|null|
+>||
 foo
 bar
 baz
