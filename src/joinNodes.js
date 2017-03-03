@@ -2,6 +2,7 @@ const isBlockType = {
   heading: true,
   paragraph: true,
   html: true,
+  yaml: true,
   list: true,
   table: true,
   code: true,
@@ -14,12 +15,22 @@ export default function joinNodes (nodes, results) {
     return '';
   }
 
-  const items = [results[0]];
-  for (let [i, j] = [0, 1]; j < nodes.length; i++, j++) {
-    if (isBlockType[nodes[i].type] && isBlockType[nodes[j].type]) {
-      items.push('\n\n');
+  const items = [];
+  let i = 0;
+  while (i < nodes.length) {
+    items.push(results[i]);
+    if (isBlockType[nodes[i].type]) {
+      let j = i + 1;
+      while (nodes[j] && results[j] === '') {
+        j++;
+      }
+      if (nodes[j] && isBlockType[nodes[j].type]) {
+        items.push('\n\n');
+      }
+      i = j;
+    } else {
+      i++;
     }
-    items.push(results[j]);
   }
 
   return items.join('');
