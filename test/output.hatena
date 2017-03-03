@@ -1,8 +1,10 @@
 >|yaml|
+---
 foo: bar
 baz:
 - qux
 - quux
+---
 ||<
 
 * h1

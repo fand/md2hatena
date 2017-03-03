@@ -78,7 +78,9 @@ ${joinNodes(node.children, node.children.map(n => nodeToHatena(n, opts)))}
 
   yaml (node) {
     return `>|yaml|
+---
 ${node.value}
+---
 ||<`;
   },
 

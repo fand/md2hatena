@@ -11,7 +11,9 @@ test('nodeToHatena(yaml)', t => {
 
   t.is(nodeToHatena(yaml), dedent(`
     >|yaml|
+    ---
     foo: bar
+    ---
     ||<
   `));
 });
@@ -23,7 +25,9 @@ test('md2hatena(yaml)', async t => {
     ---
   `)), dedent(`
     >|yaml|
+    ---
     foo: bar
+    ---
     ||<
   `));
 });
