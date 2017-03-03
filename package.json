@@ -1,7 +1,7 @@
 {
   "name": "md2hatena",
   "description": "Markdown to Hatena Syntax converter",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "author": "fand <fand@gmork.in>",
   "ava": {
     "require": "babel-register",
@@ -41,7 +41,10 @@
   "license": "MIT",
   "main": "lib/index.js",
   "nyc": {
-    "exclude": ["lib/", "test/"]
+    "exclude": [
+      "lib/",
+      "test/"
+    ]
   },
   "repository": {
     "type": "git",
