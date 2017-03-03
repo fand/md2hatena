@@ -1,7 +1,7 @@
 {
   "name": "md2hatena",
   "description": "Markdown to Hatena Syntax converter",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "author": "fand <fand@gmork.in>",
   "ava": {
     "require": "babel-register",
