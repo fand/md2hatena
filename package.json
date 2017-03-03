@@ -12,6 +12,7 @@
     "url": "https://github.com/fand/md2hatena/issues"
   },
   "dependencies": {
+    "meow": "^3.7.0",
     "pify": "^2.3.0",
     "remark-parse": "^3.0.0",
     "unified": "^6.1.1"

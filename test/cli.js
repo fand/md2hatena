@@ -8,7 +8,16 @@ test('cli', t => {
   t.is(actual, expected, 'CLI command transforms Markdown file into Hatena Syntax Correctly');
 });
 
-test('cli error', t => {
-  const res = execFileSync(`${__dirname}/../bin/cli.js`, { stdio: ['pipe', 'pipe', 'ignore'] }).toString();
-  t.regex(res, /ERROR:/);
+test('cli with invalid file', t => {
+  const error = t.throws(() => {
+    execFileSync(`${__dirname}/../bin/cli.js`, ['xxxxxx'], { stdio: ['pipe', 'pipe', 'pipe'] });
+  }, Error);
+  t.regex(error.stderr.toString(), /ERROR/);
+});
+
+test('cli without file', t => {
+  const error = t.throws(() => {
+    execFileSync(`${__dirname}/../bin/cli.js`);
+  }, Error);
+  t.regex(error.stdout.toString(), /Usage/);
 });
