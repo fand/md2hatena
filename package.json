@@ -41,10 +41,7 @@
   "license": "MIT",
   "main": "lib/index.js",
   "nyc": {
-    "exclude": [
-      "lib/",
-      "test/"
-    ]
+    "include": ["src/", "bin/"]
   },
   "repository": {
     "type": "git",
@@ -55,6 +52,6 @@
     "test": "nyc ava test",
     "prepublishOnly": "npm test && npm run build",
     "lint": "eslint src test",
-    "ci": "npm run lint && npm run test"
+    "ci": "npm run build && npm run lint && npm run test"
   }
 }
