@@ -40,6 +40,9 @@
   ],
   "license": "MIT",
   "main": "lib/index.js",
+  "nyc": {
+    "exclude": ["lib/", "test/"]
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/fand/md2hatena"
