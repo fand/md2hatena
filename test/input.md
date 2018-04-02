@@ -111,7 +111,7 @@ foo `bar` baz
 
 | Header One     | Header Two     |
 | :------------- | :------------- |
-| Item One       | Item Two       |    
+| Item One       | Item Two       |
 
 # blockquote
 
@@ -120,7 +120,7 @@ foo `bar` baz
 
 # break
 
-foo  
+foo
 bar
 
 # emphasis
@@ -169,3 +169,11 @@ yay [^alpha] yay
 ![hey][bravo]
 ![bravo][]
 ![bravo]
+
+# list test
+
+- foo
+- bar
+  - baz
+## qux
+quux
