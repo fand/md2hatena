@@ -12,22 +12,22 @@
     "url": "https://github.com/fand/md2hatena/issues"
   },
   "dependencies": {
-    "meow": "^3.7.0",
-    "pify": "^2.3.0",
-    "remark-parse": "^3.0.0",
-    "unified": "^6.1.1"
+    "meow": "^4.0.0",
+    "pify": "^3.0.0",
+    "remark-parse": "^5.0.0",
+    "unified": "^6.1.6"
   },
   "devDependencies": {
-    "ava": "^0.18.2",
-    "babel-cli": "^6.23.0",
-    "babel-preset-latest": "^6.22.0",
-    "babel-preset-stage-2": "^6.22.0",
-    "coveralls": "^2.11.16",
-    "cross-env": "^3.1.4",
+    "ava": "^0.25.0",
+    "babel-cli": "^6.26.0",
+    "babel-preset-latest": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "coveralls": "^3.0.0",
+    "cross-env": "^5.1.4",
     "dedent": "^0.7.0",
-    "eslint": "^3.16.1",
-    "eslint-config-xo": "^0.17.0",
-    "nyc": "^10.1.2"
+    "eslint": "^4.19.1",
+    "eslint-config-xo": "^0.20.1",
+    "nyc": "^11.6.0"
   },
   "files": [
     "bin/",
