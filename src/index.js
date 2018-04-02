@@ -1,9 +1,14 @@
 import unified from 'unified';
 import parse from 'remark-parse';
+import frontmatter from 'remark-frontmatter';
 import nodeToHatena from './nodeToHatena';
 
 export function md2hatena (md) {
-  return unified().use(parse, { footnotes: true }).use(stringify).process(md).then(vfile => vfile.contents);
+  return unified()
+    .use(parse, { footnotes: true })
+    .use(frontmatter, ['yaml', 'toml'])
+    .use(stringify)
+    .process(md).then(vfile => vfile.contents);
 }
 
 function findInTree (node, type) {

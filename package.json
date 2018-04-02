@@ -14,6 +14,7 @@
   "dependencies": {
     "meow": "^4.0.0",
     "pify": "^3.0.0",
+    "remark-frontmatter": "^1.2.0",
     "remark-parse": "^5.0.0",
     "unified": "^6.1.6"
   },
