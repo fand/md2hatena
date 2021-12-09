@@ -38,12 +38,15 @@ const converter = {
 
   list (node, opts) {
     const level = (opts.level || 0) + 1;
-    return node.children.map(n => nodeToHatena(n, { ...opts, level })).join('\n');
+    const ordered = node.ordered || false;
+    return node.children.map(n => nodeToHatena(n, { ...opts, level, ordered })).join('\n');
   },
 
   listItem (node, opts) {
     const level = opts.level || 0;
-    return '-'.repeat(level) + ' ' + node.children.map(n => {
+    const ordered = opts.ordered || false;
+    const symbol = ordered ? '+' : '-';
+    return symbol.repeat(level) + ' ' + node.children.map(n => {
       const h = nodeToHatena(n, { ...opts, level });
       return n.type === 'list' ? `\n${h}` : h;
     }).join('');
