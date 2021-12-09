@@ -43,7 +43,7 @@ const converter = {
 
   listItem (node, opts) {
     const level = opts.level || 0;
-    return '----------'.slice(0, level) + ' ' + node.children.map(n => {
+    return '-'.repeat(level) + ' ' + node.children.map(n => {
       const h = nodeToHatena(n, { ...opts, level });
       return n.type === 'list' ? `\n${h}` : h;
     }).join('');
