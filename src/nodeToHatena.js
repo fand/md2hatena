@@ -37,8 +37,8 @@ const converter = {
   },
 
   list (node, opts) {
-    const level = opts.level || 0;
-    return node.children.map(n => nodeToHatena(n, { ...opts, level: level + 1 })).join('\n');
+    const level = (opts.level || 0) + 1;
+    return node.children.map(n => nodeToHatena(n, { ...opts, level })).join('\n');
   },
 
   listItem (node, opts) {
