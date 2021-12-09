@@ -24,7 +24,7 @@ test('nodeToHatena(list)', t => {
 });
 
 test('md2hatena(list)', async t => {
-  t.is(await md2hatena('- foo\n- bar\n  - baz'), '- foo\n- bar\n-- baz');
+  t.is(await md2hatena('- foo\n- bar\n    - baz'), '- foo\n- bar\n-- baz');
 });
 
 test('md2hatena(ordered list)', async t => {
@@ -51,5 +51,5 @@ test('md2hatena(ordered list)', async t => {
 });
 
 test('md2hatena(ordered list)', async t => {
-  t.is(await md2hatena('1. foo\n1. bar\n  1. baz'), '+ foo\n+ bar\n++ baz');
+  t.is(await md2hatena('1. foo\n1. bar\n    1. baz'), '+ foo\n+ bar\n++ baz');
 });
