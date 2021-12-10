@@ -174,6 +174,10 @@ yay [^alpha] yay
 
 - foo
 - bar
-  - baz
+    - baz
+
+1. foo
+1. bar
+    1. baz
 ## qux
 quux

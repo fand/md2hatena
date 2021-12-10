@@ -172,6 +172,10 @@ yay ((bravo)) yay
 - bar
 -- baz
 
++ foo
++ bar
+++ baz
+
 ** qux
 
 quux
